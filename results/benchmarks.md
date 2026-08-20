@@ -8,11 +8,11 @@
 | small | 10 | 4 | 0.4 | 2 | 16 | feasible | 88.46 | 4 |
 | small | 12 | 4 | 0.5 | 3 | 26 | feasible | 140.60 | 8 |
 | medium | 50 | 8 | 0.25 | 10 | 291 | PROVEN INFEASIBLE | -- | 11 |
-| medium | 100 | 10 | 0.3 | 11 | 1499 | PROVEN INFEASIBLE | -- | 40 |
-| medium | 150 | 12 | 0.35 | 12 | 3942 | PROVEN INFEASIBLE | -- | 94 |
+| medium | 100 | 10 | 0.3 | 11 | 1499 | PROVEN INFEASIBLE | -- | 41 |
+| medium | 150 | 12 | 0.35 | 12 | 3942 | PROVEN INFEASIBLE | -- | 92 |
 | stress | 200 | 15 | 0.4 | 20 | 7936 | PROVEN INFEASIBLE | -- | 185 |
 | stress (tight K) | 200 | 5 | 0.6 | 21 | 11904 | PROVEN INFEASIBLE | -- | 0 |
-| stress (sparse) | 200 | 20 | 0.1 | 22 | 1974 | PROVEN INFEASIBLE | -- | 314 |
+| stress (sparse) | 200 | 20 | 0.1 | 22 | 1974 | PROVEN INFEASIBLE | -- | 317 |
 
 ## B. Small instances vs brute-force optimum
 
@@ -30,8 +30,8 @@
 | 10 | 4 | 1 | feasible | 78.05 | 85.64 | 8.9% | 3000 |
 | 12 | 4 | 1 | feasible | 121.04 | 121.04 | 0.0% | 3000 |
 | 50 | 8 | 1 | feasible | 1307.55 | 1318.77 | 0.9% | 8001 |
-| 100 | 10 | 5 | no solution found | -- | -- | -- | 8023 |
+| 100 | 10 | 5 | no solution found | -- | -- | -- | 8085 |
 | 150 | 12 | 5 | PROVEN INFEASIBLE | -- | -- | -- | 0 |
 | 200 | 15 | 5 | PROVEN INFEASIBLE | -- | -- | -- | 0 |
 | 200 | 5 | 5 | PROVEN INFEASIBLE | -- | -- | -- | 0 |
-| 200 | 20 | 1 | feasible | 11029.54 | 11310.88 | 2.5% | 8002 |
+| 200 | 20 | 1 | feasible | 11001.32 | 11310.88 | 2.7% | 8000 |

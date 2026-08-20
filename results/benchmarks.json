@@ -28,13 +28,13 @@
       "certificate": null,
       "feasible": true,
       "slack": 1,
-      "penalty": 63.21122752087651,
+      "penalty": 63.21122752087644,
       "runtime_ms": 3000,
       "greedy_only_penalty": 64.98751367201663,
       "reason": "",
       "exact_penalty": 63.2112275208985,
       "exact_proved": true,
-      "ratio": 0.9999999999996522
+      "ratio": 0.9999999999996511
     }
   },
   {
@@ -66,13 +66,13 @@
       "certificate": null,
       "feasible": true,
       "slack": 1,
-      "penalty": 78.04958686483141,
+      "penalty": 78.04958686481876,
       "runtime_ms": 3000,
       "greedy_only_penalty": 85.63758765481937,
       "reason": "",
       "exact_penalty": 78.04958686481538,
       "exact_proved": true,
-      "ratio": 1.0000000000002054
+      "ratio": 1.0000000000000433
     }
   },
   {
@@ -104,13 +104,13 @@
       "certificate": null,
       "feasible": true,
       "slack": 1,
-      "penalty": 121.03805618963499,
+      "penalty": 121.03805618963374,
       "runtime_ms": 3000,
       "greedy_only_penalty": 121.0380561896399,
       "reason": "",
       "exact_penalty": 121.03805618963987,
       "exact_proved": true,
-      "ratio": 0.9999999999999596
+      "ratio": 0.9999999999999493
     }
   },
   {
@@ -138,7 +138,7 @@
       "certificate": null,
       "feasible": true,
       "slack": 1,
-      "penalty": 1307.5545348030896,
+      "penalty": 1307.554534803101,
       "runtime_ms": 8001,
       "greedy_only_penalty": 1318.7708328496456,
       "reason": ""
@@ -154,8 +154,8 @@
     "certificate": "C3 interval clique: 4 mutually conflicting tasks (T59, T13, T14, T25) are all confined to slots [7,9] (3 slots) -- pigeonhole",
     "feasible": false,
     "penalty": null,
-    "runtime_ms": 40,
-    "wall_ms": 40,
+    "runtime_ms": 41,
+    "wall_ms": 41,
     "reason": "PROVEN INFEASIBLE (C3 interval clique: 4 mutually conflicting tasks (T59, T13, T14, T25) are all confined to slots [7,9] (3 slots) -- pigeonhole)",
     "stats": {
       "restarts": 0,
@@ -170,7 +170,7 @@
       "feasible": false,
       "slack": 5,
       "penalty": null,
-      "runtime_ms": 8023,
+      "runtime_ms": 8085,
       "greedy_only_penalty": null,
       "reason": "NO FEASIBLE ASSIGNMENT FOUND (search budget exhausted; unplaced: T60, T77, T12, T86, T66) -- not a proof of infeasibility"
     }
@@ -185,8 +185,8 @@
     "certificate": "C3 interval clique: 3 mutually conflicting tasks (T41, T123, T149) are all confined to slots [7,8] (2 slots) -- pigeonhole",
     "feasible": false,
     "penalty": null,
-    "runtime_ms": 94,
-    "wall_ms": 94,
+    "runtime_ms": 92,
+    "wall_ms": 92,
     "reason": "PROVEN INFEASIBLE (C3 interval clique: 3 mutually conflicting tasks (T41, T123, T149) are all confined to slots [7,8] (2 slots) -- pigeonhole)",
     "stats": {
       "restarts": 0,
@@ -278,8 +278,8 @@
     "certificate": "C3 interval clique: 3 mutually conflicting tasks (T102, T198, T63) are all confined to slots [18,19] (2 slots) -- pigeonhole",
     "feasible": false,
     "penalty": null,
-    "runtime_ms": 314,
-    "wall_ms": 314,
+    "runtime_ms": 317,
+    "wall_ms": 317,
     "reason": "PROVEN INFEASIBLE (C3 interval clique: 3 mutually conflicting tasks (T102, T198, T63) are all confined to slots [18,19] (2 slots) -- pigeonhole)",
     "stats": {
       "restarts": 0,
@@ -293,8 +293,8 @@
       "certificate": null,
       "feasible": true,
       "slack": 1,
-      "penalty": 11029.540599208627,
-      "runtime_ms": 8002,
+      "penalty": 11001.317868956405,
+      "runtime_ms": 8000,
       "greedy_only_penalty": 11310.883831261577,
       "reason": ""
     }

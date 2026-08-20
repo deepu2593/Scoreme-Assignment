@@ -2,8 +2,9 @@
 
 Raw numbers: [`results/benchmarks.md`](../results/benchmarks.md) (auto-generated),
 [`results/benchmarks.json`](../results/benchmarks.json), charts
-[`results/penalty_vs_n.png`](../results/penalty_vs_n.png) and
-[`results/runtime_vs_n.png`](../results/runtime_vs_n.png). Reproduce with
+[`results/penalty_vs_n.svg`](../results/penalty_vs_n.svg) and
+[`results/runtime_vs_n.svg`](../results/runtime_vs_n.svg) (PNG versions are
+written locally by the same harness). Reproduce with
 `python bench/run_benchmarks.py` (~3 min).
 
 Machine: Linux, CPython 3.11, single core, no BLAS in the hot path. Solver budget
@@ -128,7 +129,7 @@ structure to be schedulable at all.
 | 150 | 12 | 5 | proven infeasible (C4) | — | — | — | 0 |
 | 200 | 15 | 5 | proven infeasible (C4) | — | — | — | 0 |
 | 200 | 5 | 5 | proven infeasible (C4) | — | — | — | 0 |
-| 200 | 20 | 1 | feasible | 11029.54 | 11310.88 | **2.5%** | 8002 |
+| 200 | 20 | 1 | feasible | 11001.32 | 11310.88 | **2.7%** | 8000 |
 
 SPARK reaches the **proven optimum** on all three relaxed small instances too
 (ratio 1.000000, exact solver confirms). The three `slack=5` rows stay infeasible
@@ -208,7 +209,7 @@ rather than pretending the numbers are deterministic.
   before reporting failure. **I over-estimated this phase's value before
   measuring it**; on random instances it is insurance, not a workhorse.
 * **The Phase-3 chain *move* operator (N3), by contrast, does the heavy
-  lifting** in refinement: 1009 of 1980 accepted moves on relaxed `n=200,K=20`
+  lifting** in refinement: 1009 of 1980 accepted moves in one measured run on relaxed `n=200,K=20`
   and 4478 of 6340 on relaxed `n=50` were chain moves, confirming §1 of
   docs/algorithm.md — on a conflict-dense schedule, plain relocation is almost
   always illegal and moving *into* an occupied slot is the only way to progress.
