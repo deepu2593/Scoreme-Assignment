@@ -55,8 +55,11 @@ no stranded GPU).  So lowering any term never makes the schedule operationally
 worse in that dimension, which is what makes the sum meaningful to minimise.
 
 CALIBRATION.  Defaults lambda_B = 1.0, lambda_S = 1.0, lambda_G = 0.5.  They are
-CLI-exposed; docs/benchmarks.md contains the sensitivity sweep showing that the
-ranking of algorithms is stable across lambda in [0.25, 4].
+CLI-exposed.  `bench/sensitivity.py` sweeps each lambda over [0.25, 4] with the
+others held fixed; across the whole 45-point sweep the ranking of full SPARK
+against its construction-only ablation never flips, so these defaults set the
+score rather than the winner.  See docs/benchmarks.md for the numbers, including
+the one instance where lambda_G provably does nothing and why.
 """
 
 from __future__ import annotations
@@ -71,9 +74,11 @@ GPU_DIM = 2
 
 @dataclass(frozen=True)
 class PenaltyWeights:
-    """The lambda knobs.  Frozen so a solver cannot mutate the objective mid-run
-    (a bug we actually hit once: the annealer rescaled lambdas on restart and
-    then reported penalties incomparable with the greedy baseline)."""
+    """The lambda knobs.  Frozen deliberately: a solver that mutated the
+    objective mid-run would produce penalties that are not comparable across
+    restarts or against the ablation baseline, and the resulting benchmark
+    numbers would be silently meaningless.  Immutability makes that mistake
+    impossible rather than merely unlikely."""
 
     base: float = 1.0
     balance: float = 1.0

@@ -10,17 +10,18 @@ current assignment sigma:
 
 WHY conf: the feasibility question "may task i go to slot s?" must be O(1) in
 the inner loop of both construction and local search.  Recomputing it by walking
-adjacency is O(deg) -- at density 0.6, n=200 that is 120 neighbours per query and
-it showed up as ~70% of runtime in profiling.  conf turns the query into an array
-read; the cost is O(deg) maintenance per *applied* move, and we apply far fewer
-moves than we evaluate.
+adjacency is O(deg) per query -- at density 0.6 with n=200 that is ~120
+neighbours, and the refinement loop evaluates far more candidate moves than it
+applies.  conf turns the query into a single array read and pays O(deg) only on
+an *applied* move, which is the favourable side of that ratio.
 
 The balance term is  scale * sum_k [ sumU2[k] - sumU[k]^2 / K ]  which is the
 identity  sum (U - Ubar)^2 = sum U^2 - K*Ubar^2  with Ubar = sumU/K.  Keeping the
 two running sums is what makes a relocation cost O(d) instead of O(K*d), and it
 is exact -- no drift, because we add and subtract the same float quantities that
-a full recompute would (the unit tests assert agreement to 1e-9 after 10^4
-random moves).
+a full recompute would.  `test_incremental_penalty_matches_full_recompute` pins
+this down: 3000 random relocations on a 30-task instance, asserting after every
+one that the reported delta and the full recompute agree to 1e-7.
 """
 
 from __future__ import annotations

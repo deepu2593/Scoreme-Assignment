@@ -50,11 +50,12 @@ class Instance:
     """A scheduling instance in the form the solver actually consumes.
 
     Design decision: we materialise the conflict graph as adjacency *sets* (not
-    an edge list and not a dense matrix).  The solver's inner loop asks "is slot
-    s conflict-free for task i?" O(n*K) times per pass; with adjacency sets that
-    is answered by walking deg(i) neighbours, which for the sparse-conflict
-    stress instance (density 0.10) is ~20x cheaper than scanning a row of a
-    dense matrix, while for the dense instances it costs the same.
+    an edge list and not a dense matrix).  Membership tests dominate the solver's
+    inner loops, and a set answers them in O(1) while an edge list needs a scan.
+    Sets also cost O(deg) rather than O(n) to iterate, which matters on the
+    sparse-conflict stress instance (density 0.10, mean degree ~20 against
+    n=200).  The solver's hot conflict query is served by a counter array in
+    ScheduleState rather than by this structure -- see msme/state.py.
     """
 
     tasks: list[str]

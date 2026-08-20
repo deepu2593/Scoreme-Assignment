@@ -74,9 +74,12 @@ class Spark:
         self.regret_mu = regret_mu
         self.chain_depth = chain_depth
         self.local_search = local_search
-        # Tenure ~ sqrt(n) is the standard tabu scaling; below sqrt(n) the search
-        # cycles on tight instances, far above it the search cannot revisit a
-        # slot it needs.  We expose it so the sensitivity sweep can vary it.
+        # Tenure ~ sqrt(n) is the conventional tabu scaling: short enough that a
+        # slot becomes reusable within a few passes over the task set, long
+        # enough to break 2-cycles between a relocate and its inverse.  I did not
+        # tune it against this problem -- it is exposed as a constructor
+        # argument so it can be, and the aspiration criterion below limits the
+        # damage if it is too long.
         self.tabu_tenure = tabu_tenure or max(5, int(inst.n ** 0.5) + 2)
         self.stats = {"restarts": 0, "chain_repairs": 0, "moves": 0,
                       "swaps": 0, "chain_moves": 0, "perturbations": 0}
@@ -173,9 +176,15 @@ class Spark:
         The binding-dimension order is the important detail: evicting the task
         with the biggest total footprint is wrong when only RAM is tight and that
         task is CPU-heavy.  We then recursively re-seat each evicted task,
-        depth-bounded.  Depth 3 was chosen empirically -- depth 2 leaves ~8% of
-        cornered tasks unplaced on the n=150 instance, depth 4 costs 3x the time
-        for under 1% extra placements.
+        depth-bounded.
+
+        On chain_depth = 3: I swept depth over {1,2,3,4} on 55 generator
+        instances that survive the certificates and still corner a task, and the
+        number solved was identical (9/55) at every depth, with no meaningful
+        runtime difference.  So depth is NOT tuned -- 3 is a conservative
+        default that bounds the recursion, and on generator-shaped instances the
+        repair phase is insurance rather than a workhorse.  See
+        docs/benchmarks.md for the measurement.
         """
         still: list[int] = []
         for i in failed:

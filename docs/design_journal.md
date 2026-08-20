@@ -32,8 +32,9 @@ the experiment):
   `bench/adversarial.py` — the urgency tie-break is worth exactly one unit of
   the approximation ratio there.
 * **Whether the repair phase should backtrack or give up** (`_seat`, chain depth
-  3). Measured: depth 2 leaves cornered tasks unplaced; depth 4 costs ~3x for
-  <1% gain.
+  3). I swept depth {1,2,3,4} and it changed nothing (9/55 solved at every
+  depth) — a design decision that turned out not to be a decision at all. If you
+  cite this, cite it honestly as a negative result.
 * **Whether local search may visit infeasible states.** SPARK says no; the
   rejected-alternatives section of `docs/algorithm.md` explains why, but the
   cost is that whole regions of the space are unreachable.

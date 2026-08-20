@@ -193,6 +193,30 @@ rather than pretending the numbers are deterministic.
 
 ---
 
+## Lambda sensitivity (`python bench/sensitivity.py`)
+
+Each lambda swept over `{0.25, 0.5, 1, 2, 4}` with the others at their defaults,
+on three instances (`n=8`, `n=12`, relaxed `n=50`), comparing full SPARK against
+its construction-only ablation at every setting.
+
+* **Ranking flips across the entire 45-point sweep: 0.** Full SPARK is never
+  worse than its own construction phase at any lambda, so the defaults are not
+  load-bearing for *which* schedule wins — they set the score, not the winner.
+  (Before the RNG-stream fix of A3 this was not true; the sweep is now also a
+  regression test for that bug.)
+* The absolute penalty responds strongly and sensibly: on `n=8`, raising
+  `lambda_S` from 0.25 to 4 moves the score 70.25 -> 103.80, confirming the SLA
+  term is not a rounding artefact.
+* **`lambda_G` has literally no effect on the relaxed `n=50` instance**
+  (1307.5545 at every setting). Cause: the generator's underflow quirk makes the
+  GPU demands there all sub-1.0 and near-identical, so *every* schedule strands
+  about the same fractional GPU mass and the term is effectively constant on
+  that instance. It bites on the small instances, where GPU demands span
+  1.0–2.0 (`n=8`: 74.70 -> 108.71 across the sweep). Worth knowing before
+  tuning `lambda_G` against a large benchmark and concluding it does nothing.
+
+---
+
 ## Ablation: what each phase is worth
 
 * **Certificates** turn 6 of 9 mandated instances from an 8-second fruitless
@@ -200,6 +224,12 @@ rather than pretending the numbers are deterministic.
 * **Local search** buys 0–8.9% on solvable instances (mean ~2.6% where it has
   room). Small, because the construction is already strong — which is the point
   of the MRV + regret design, not a disappointment.
+* **Chain depth is a non-decision.** Sweeping `chain_depth` over {1,2,3,4} on
+  55 generator instances that survive the certificates and still corner a task
+  gave an identical 9/55 solved at every depth, with no meaningful runtime
+  difference. I had assumed depth would trade quality against time; it does not,
+  on instances of this shape. The default of 3 is a bound on the recursion, not
+  a tuned parameter.
 * **Phase-2 chain repair** never fires on the solvable benchmark instances
   (`chain_repairs = 0` on relaxed `n=50` and `n=200,K=20`) — the MRV+regret
   construction simply does not corner a task there. It does fire on tight
