@@ -45,6 +45,17 @@ additionally cross-checks the certificate family against the exhaustive
 branch-and-bound solver on 30 random 7-task instances: whenever a certificate
 fires, the exact solver also proves no schedule exists.
 
+As a further check on this specific instance I ran an **exhaustive** clique
+search (all subsets, `itertools.combinations`) rather than the greedy heuristic
+the solver uses. It confirms the reported witness and turns up a **second,
+independent one**: tasks T4, T11, T22 and T42 are pairwise conflicting with
+windows (6,7), (5,7), (5,6) and (5,6) — four tasks needing four distinct slots,
+all trapped inside the three-slot interval [5,7]. So `n=50, seed=10` is
+unschedulable for two unrelated reasons, and the greedy certificate reports
+whichever it reaches first. This matters for the soundness argument: the greedy
+clique search is what makes C3 fast, and its output here agrees with exhaustive
+enumeration.
+
 ### Root cause: the generator's window distribution
 
 ```python
