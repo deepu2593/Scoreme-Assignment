@@ -4,7 +4,7 @@ These run BEFORE any search.  Each one, when it fires, is a *proof* that no
 feasible assignment exists -- not a heuristic guess.  That distinction matters
 for the report: the solver's `violation_reason` says either "PROVEN INFEASIBLE
 (certificate ...)" or "NO FEASIBLE ASSIGNMENT FOUND (search exhausted budget)",
-and we never conflate the two.  All four are sound but none is complete (the
+and we never conflate the two.  All five are sound but none is complete (the
 problem is NP-hard, so a complete polynomial test would collapse P and NP).
 
 C1  Window sanity          -- l_i > u_i, or the window falls outside [0, K-1].
@@ -15,10 +15,6 @@ C3  Interval clique bound  -- a set of pairwise-conflicting tasks whose windows
                               distinct slots; if the clique is bigger than L,
                               pigeonhole kills it.  (We use a greedy clique, so
                               this is sound but not exhaustive.)
-C5  Cardinality pigeonhole -- a slot cannot hold more tasks than its tightest
-                              dimension allows given the smallest demand present;
-                              summed over an interval this bounds how many
-                              window-trapped tasks that interval can absorb.
 C4  Interval Hall/knapsack -- for every slot interval [a,b] and every resource
                               dimension k, the tasks whose windows are trapped
                               inside [a,b] must all fit into the total capacity
@@ -26,6 +22,10 @@ C4  Interval Hall/knapsack -- for every slot interval [a,b] and every resource
                               time-windowed analogue of Hall's condition and is
                               the certificate that actually fires on the
                               tight-K stress instance.
+C5  Cardinality pigeonhole -- a slot cannot hold more tasks than its tightest
+                              dimension allows given the smallest demand present;
+                              summed over an interval this bounds how many
+                              window-trapped tasks that interval can absorb.
 """
 
 from __future__ import annotations
