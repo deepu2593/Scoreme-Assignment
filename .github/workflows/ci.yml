@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Unit tests
+        run: python -m pytest msme/tests -q
+      - name: Smoke-run the three solvable mandated instances
+        run: |
+          python run.py --n 8  --K 3 --density 0.3 --seed 1 --budget-ms 500 --quiet
+          python run.py --n 10 --K 4 --density 0.4 --seed 2 --budget-ms 500 --quiet
+          python run.py --n 12 --K 4 --density 0.5 --seed 3 --budget-ms 500 --quiet
+      - name: Verify the tight adversarial bound still holds
+        run: python bench/adversarial.py
