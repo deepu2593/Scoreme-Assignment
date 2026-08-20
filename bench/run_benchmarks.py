@@ -21,6 +21,10 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import matplotlib
 matplotlib.use("Agg")
+# Emit SVG text as <text> elements rather than embedded glyph outlines: the
+# charts are committed to the repository, and outline-embedding inflates them
+# from ~4 KB to ~40 KB for no visual gain.
+matplotlib.rcParams["svg.fonttype"] = "none"
 import matplotlib.pyplot as plt
 
 from msme.certificates import check_certificates
@@ -186,6 +190,7 @@ def make_charts(rows):
     ax.legend()
     ax.grid(alpha=0.3)
     fig.tight_layout()
+    fig.savefig(os.path.join(RESULTS, "penalty_vs_n.svg"))
     fig.savefig(os.path.join(RESULTS, "penalty_vs_n.png"), dpi=140)
 
     fig, ax = plt.subplots(figsize=(7, 4.5))
@@ -195,6 +200,7 @@ def make_charts(rows):
     ax.set_title("Runtime vs instance size (8 s budget, anytime solver)")
     ax.grid(alpha=0.3)
     fig.tight_layout()
+    fig.savefig(os.path.join(RESULTS, "runtime_vs_n.svg"))
     fig.savefig(os.path.join(RESULTS, "runtime_vs_n.png"), dpi=140)
 
 
