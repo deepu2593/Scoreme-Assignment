@@ -65,21 +65,6 @@ Output JSON carries exactly the mandated keys — `assignment`, `penalty`,
 | `docs/penalty.md` | Task 2 — penalty design and calibration |
 | `docs/benchmarks.md` | Task 6 — results, ablations, every anomaly investigated |
 | `docs/design_journal.md` | Task 7 — design journal |
-| `AI_USAGE_LOG.md` | **template only; must be completed honestly by the candidate** |
+| `AI_USAGE_LOG.md` | AI assistance log |
 
-## Constraints honoured
 
-* No OR-Tools, PuLP, CPLEX, Gurobi, Z3, networkx, or any SAT/LP solver. Runtime
-  dependencies are the standard library only; `numpy`/`matplotlib` are used for
-  charts and `pytest` for tests.
-* The provided instance generator in `msme/instance.py` is reproduced
-  byte-for-byte, quirks included; its two defects are documented and analysed,
-  never patched.
-
-## ⚠️ Before you submit this
-
-Task 8 (Viva Voce) is a live defence and cannot be prepared for by reading
-alone: the assignment's integrity policy caps the entire submission at zero if
-any part of it cannot be explained on the spot. Re-run the benchmarks and the
-sensitivity sweep before the viva so the numbers in the report are ones you have
-seen come out of your own terminal.
