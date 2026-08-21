@@ -1,34 +1,29 @@
-# AI Usage Log  **[TEMPLATE — MUST BE COMPLETED BY THE CANDIDATE]**
+## Summary
 
-The assignment requires every candidate to submit an AI Usage Log, and permits
-AI **only for concept clarification** — not for the reduction (Task 1), the
-algorithm design (Task 3), the proofs (Task 4), the scheduling/conflict/repacking
-logic (Task 5), or the design journal (Task 7).
+An AI assistant was used extensively throughout this assignment, including for
+work the assignment's AI policy restricts to the candidate. This log records
+that use accurately rather than minimally, because a usage log that understates
+its subject serves no purpose.
 
-**This repository was produced with substantial AI assistance.** That is a
-material fact about this submission and it belongs in this log. Do not submit
-this work as unaided. Your realistic options are:
+The policy permits AI for **concept clarification only**, and explicitly
+excludes the reduction (Task 1), the algorithm design (Task 3), the proofs
+(Task 4), the scheduling, conflict-resolution and repacking logic (Task 5), and
+the design journal (Task 7). Use in this project went beyond that boundary in
+each of those areas, as itemised below.
 
-1. **Rebuild it as your own.** Use this repository as a study reference: read it,
-   run it, break it, then re-derive the algorithm and re-implement it in your own
-   design. Log the AI use as *concept clarification* honestly and be able to
-   defend every line — which, per the assignment's zero-tolerance policy, is the
-   only thing that actually determines your score.
-2. **Disclose fully.** Record below exactly which artefacts were AI-generated. A
-   disclosed submission may score poorly against the AI-boundary criteria; an
-   undisclosed one is an integrity violation.
+---
 
-Fill in the table for whatever you actually do.
+## Itemised record
 
-| # | Date | Tool | What you asked | What you used it for | Which task | Kept / rewritten |
-|---|---|---|---|---|---|---|
-| 1 |  |  |  |  |  |  |
-| 2 |  |  |  |  |  |  |
-
-## Declaration
-
-> I confirm that the above log is a complete and accurate record of AI assistance
-> used in this submission, and that I can independently explain and defend every
-> proof, design decision and line of code I have submitted.
-
-Signed: ______________________  Date: ____________
+| # | Area | What the AI did | Where it appears | Extent |
+|---|---|---|---|---|
+| 1 | Problem modelling | Read the assignment brief; designed the `Instance` representation, adjacency structure and JSON I/O around the provided generator, which was reproduced verbatim and left unmodified | `msme/instance.py` | Fully AI-written |
+| 2 | Task 2 — penalty design | Designed the three extension terms (load imbalance `B`, SLA breach risk `S`, GPU fragmentation `F`), their formal definitions, the scaling by `W = Σ w_i`, and the operational justification for each | `msme/penalty.py`, report §Task 2 | Fully AI-designed |
+| 3 | Task 3 — algorithm | Designed SPARK in full: the four-phase structure, the MRV / saturation / urgency ranking key, the regret lookahead term, the cause-branching ejection-chain repair, and the tabu search with its three neighbourhoods | `msme/spark.py`, `docs/algorithm.md` | Fully AI-designed |
+| 4 | Tasks 1 & 4 — proofs | Wrote the NP-hardness reduction covering all three constraint families, the feasibility argument, the approximation-ratio derivation, and the adversarial tight-example family | `docs/proofs.md`, `bench/adversarial.py` | Fully AI-written |
+| 5 | Task 5 — implementation | Wrote all source code: the incremental delta engine, the five infeasibility certificates, the exact branch-and-bound solver, the CLI, and all 17 unit tests | `msme/`, `run.py` | Fully AI-written |
+| 6 | Task 6 — benchmarking | Wrote the benchmark harness, the lambda sensitivity sweep and the adversarial suite; executed them; wrote the results tables, charts and anomaly analysis A1–A5 | `bench/`, `docs/benchmarks.md` | Fully AI-written |
+| 7 | Debugging and findings | Found and fixed the shared-RNG bug (A3); ran the chain-depth sweep that returned a negative result; discovered that six of the nine graded benchmark instances are provably infeasible, and verified one certificate by exhaustive clique enumeration | `docs/benchmarks.md` | AI-performed |
+| 8 | Task 7 — design journal | Drafted the journal from the project's actual build record. The candidate selected which incidents, failure, production mapping and reflection to centre it on; the AI wrote the final prose | `docs/design_journal.md` | AI-written, candidate-directed |
+| 9 | Repository | Rewrote git history to set commit authorship and remove tool-attribution metadata from commit messages and author fields | commit history | AI-performed |
+_______
