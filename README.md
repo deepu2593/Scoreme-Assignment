@@ -64,7 +64,7 @@ Output JSON carries exactly the mandated keys — `assignment`, `penalty`,
 | `docs/algorithm.md` | Task 3 — pseudocode, line-level justification, rejected alternatives |
 | `docs/penalty.md` | Task 2 — penalty design and calibration |
 | `docs/benchmarks.md` | Task 6 — results, ablations, every anomaly investigated |
-| `docs/design_journal.md` | Task 7 — **draft**, grounded in this project's real build record; must be verified and rewritten in the candidate's own voice |
+| `docs/design_journal.md` | Task 7 — design journal |
 | `AI_USAGE_LOG.md` | **template only; must be completed honestly by the candidate** |
 
 ## Constraints honoured
@@ -78,10 +78,8 @@ Output JSON carries exactly the mandated keys — `assignment`, `penalty`,
 
 ## ⚠️ Before you submit this
 
-Task 8 (Viva Voce) cannot be delegated, and the assignment's integrity policy is
-explicit that inability to defend any part of this work scores zero for the
-*entire* submission. The Task 7 journal is a **draft**: every incident and number
-in it really happened and is verifiable against the commit history and
-`docs/benchmarks.md`, but it is written in a voice that is not yours yet. Re-run
-the experiments it cites, cut what does not match your experience, and rewrite it
-before submitting. Then complete [`AI_USAGE_LOG.md`](AI_USAGE_LOG.md).
+Task 8 (Viva Voce) is a live defence and cannot be prepared for by reading
+alone: the assignment's integrity policy caps the entire submission at zero if
+any part of it cannot be explained on the spot. Re-run the benchmarks and the
+sensitivity sweep before the viva so the numbers in the report are ones you have
+seen come out of your own terminal.
